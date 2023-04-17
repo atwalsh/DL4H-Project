@@ -11,9 +11,18 @@
 ## Instructions
 
 ### Dependencies
+
 - PostgreSQL
 - Conda
 - Git
+
+### Computational requirements
+
+- The mimic-code repository suggests that users should reserve 100 GB of space for the PostgreSQL database. It will also likely take many (6+) hours to build the database.
+- While users may download individual files of the mimic-code repository, the MIMIC-Extract codebase expects to take full-database. Therefore, users who wish to partially download the dataset should take caution for possible sources of error. 
+- Downloading the full ZIP file from PhysioNet may take an hour or more.
+- The MIMIC-Extract function may take between 1.5-2 hours to run on the full population in this test case. Running with a smaller population (e.g., 25) only takes a few minutes.
+
 
 The below steps outline how to successfully build MIMIC-III and run the MIMIC-Extract program. This was tested on a 2021 MacBook Pro with an Apple M1 Max and 64 GB of RAM, using PostgreSQL 13.5.
 
@@ -49,6 +58,7 @@ The below steps outline how to successfully build MIMIC-III and run the MIMIC-Ex
 
 
 ### 2. Run MIMIC-Extract
+
 1. Clone  [MIMIC_Extract](https://github.com/MLforHealth/MIMIC_Extract)
 2. Create the Conda environment (See [updated Conda .yml in atwalsh/MIMIC-Extract](https://github.com/atwalsh/MIMIC_Extract/blob/project-draft/mimic_extract_env_py36.yml))
 	1. Open the cloned `MIMIC_Extract/utils/` folder in Terminal
