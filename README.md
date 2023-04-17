@@ -73,3 +73,8 @@ The below steps outline how to successfully build MIMIC-III and run the MIMIC-Ex
 4. Run the extraction script with `python mimic_direct_extract.py`
 	1. Set the `--out-path` parameter to the desired extraction output location
 	2. Set the `--pop_size` parameter to set a population size 
+
+
+## References
+
+Shirly Wang, Matthew B. A. McDermott, Geeticka Chauhan, Michael C. * Hughes, Tristan Naumann, and Marzyeh Ghassemi. MIMIC-Extract: A Data Extraction, Preprocessing, and Representation Pipeline for MIMIC-III. arXiv:1907.08322.
