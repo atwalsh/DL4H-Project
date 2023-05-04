@@ -12,9 +12,9 @@
 
 ### Dependencies
 
-- PostgreSQL
-- Conda
-- Git
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ### Computational requirements
 
