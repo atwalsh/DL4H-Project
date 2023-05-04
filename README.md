@@ -10,7 +10,7 @@
 
 ## Instructions
 
-This repository provide two methods of configuring your local environment for running MIMIC-Extract:
+This repository provides two methods of configuring your local environment for running MIMIC-Extract:
 
 1. Using the `mimic_ez.py` script to automatically run all necessary steps to build the MIMIC-III database and configure MIMIC_Extract
 2. Following the below instructions to build MIMIC-III and configure MIMIC_Extract manually
@@ -50,6 +50,9 @@ The below steps outline how to successfully build MIMIC-III and run the MIMIC-Ex
 
 1. Clone [mimic-code](https://github.com/MIT-LCP/mimic-code)
 2. Clone  [MIMIC_Extract](https://github.com/MLforHealth/MIMIC_Extract)
+3. Install dependencies and create conda environment:
+	1. Run `export MACOSX_DEPLOYMENT_TARGET=10.9`
+	2. Run `conda env create --force -f mimic_extract_env_py36.yml`
 3. Run the `mimic_ez.py` script:
 
 ```console
