@@ -30,6 +30,16 @@ def run(mimic_zip_path, mimic_code_path, mimic_extract_path, pg_host, pg_user, p
         click.echo(
             f'\nMIMIC-Extract directory does not exist at {mimic_extract_path}')
         raise click.Abort
+    
+    # Clean trailing slashes
+    mimic_zip_path.rstrip('/')
+    mimic_code_path.rstrip('/')
+    mimic_extract_path.rstrip('/')
+
+    # Set important path variables
+    BUILD_MIMIC_POSTGRES_DIR = f'{mimic_code_path}/mimic-iii/buildmimic/postgres'
+    MIMIC_POSTGRES_CONCEPTS_DIR = f'{mimic_code_path}/mimic-iii/concepts_postgres'
+    MIMIC_EXTRACT_UTILS_DIR = f'{mimic_extract_path}/utils'
 
     try:
         conn = psycopg2.connect(
@@ -38,18 +48,71 @@ def run(mimic_zip_path, mimic_code_path, mimic_extract_path, pg_host, pg_user, p
             password=pg_password,
             port=pg_port
         )
+        conn.close()
     except psycopg2.OperationalError:
         click.echo(
             'Error connecting to PostgreSQL database. Check connection inputs.')
         raise click.Abort
 
+    # Build MIMIC-III for PostgreSQL
     click.echo('-'*50)
     click.echo('Building MIMIC-III Database')
     click.echo('-'*50)
-    subrun(f'make -C "{mimic_code_path}/mimic-iii/buildmimic/postgres/" create-user mimic-gz datadir="{mimic_zip_path}" DBNAME="{pg_db}" DBUSER="{pg_user}" DBPASS="{pg_password}" DBHOST="{pg_host}" DBPORT="{pg_port}"',
+    subrun(f'make -C "{BUILD_MIMIC_POSTGRES_DIR}/" create-user mimic-gz datadir="{mimic_zip_path}" DBNAME="{pg_db}" DBUSER="{pg_user}" DBPASS="{pg_password}" DBHOST="{pg_host}" DBPORT="{pg_port}"',
            stdout=sys.stdout, stderr=sys.stderr, shell=True)
-
     
+    # Build mimic-code concepts
+    click.echo('-'*50)
+    click.echo('Generate PostgreSQL concepts')
+    click.echo('-'*50)
+    conn = psycopg2.connect(
+        dbname=pg_db
+        host=pg_host,
+        user=pg_user,
+        password=pg_password,
+        port=pg_port
+    )
+    cursor = connection.cursor()
+    mimc_code_postgres_funcs = f'{MIMIC_POSTGRES_CONCEPTS_DIR}/postgres-functions.sql'
+    with open(mimc_code_postgres_funcs, "r") as file:
+        sql_script = file.read()
+    cursor.execute(sql.SQL(sql_script))
+
+    mimc_code_postgres_concepts = f'{MIMIC_POSTGRES_CONCEPTS_DIR}/postgres-make-concepts.sql'
+    with open(mimc_code_postgres_concepts, "r") as file:
+        sql_script = file.read()
+    cursor.execute(sql.SQL(sql_script))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+    # Build mimic-extract
+    click.echo('-'*50)
+    click.echo('Configuring MIMIC_Extract')
+    click.echo('-'*50)
+    subrun(f'bash {MIMIC_EXTRACT_UTILS_DIR}/postgres_make_extended_concepts.sh', stdout=sys.stdout, stderr=sys.stderr, shell=True)
+    # Configure extract concepts
+    conn = psycopg2.connect(
+        dbname=pg_db
+        host=pg_host,
+        user=pg_user,
+        password=pg_password,
+        port=pg_port
+    )
+    cursor = connection.cursor()
+    mimc_extract_postgres_concepts = f'{MIMIC_EXTRACT_UTILS_DIR}/niv-durations.sql'
+    with open(mimc_extract_postgres_concepts, "r") as file:
+        sql_script = file.read()
+    cursor.execute(sql.SQL(sql_script))
+    connection.commit()
+    cursor.close()
+    connection.close()
+    
+    click.echo('')
+    click.echo('-'*50)
+    click.echo('DONE! Use mimic_direct_extract.py to run MIMIC-Extract.')
+    click.echo('-'*50)
 
 if __name__ == '__main__':
     run()
