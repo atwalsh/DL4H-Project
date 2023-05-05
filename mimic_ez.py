@@ -66,7 +66,7 @@ def run(mimic_zip_path, mimic_code_path, mimic_extract_path, pg_host, pg_user, p
     click.echo('Generate PostgreSQL concepts')
     click.echo('-'*50)
     conn = psycopg2.connect(
-        dbname=pg_db
+        dbname=pg_db,
         host=pg_host,
         user=pg_user,
         password=pg_password,
@@ -94,7 +94,7 @@ def run(mimic_zip_path, mimic_code_path, mimic_extract_path, pg_host, pg_user, p
     subrun(f'bash {MIMIC_EXTRACT_UTILS_DIR}/postgres_make_extended_concepts.sh', stdout=sys.stdout, stderr=sys.stderr, shell=True)
     # Configure extract concepts
     conn = psycopg2.connect(
-        dbname=pg_db
+        dbname=pg_db,
         host=pg_host,
         user=pg_user,
         password=pg_password,
