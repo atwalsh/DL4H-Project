@@ -72,7 +72,7 @@ def run(mimic_zip_path, mimic_code_path, mimic_extract_path, pg_host, pg_user, p
         password=pg_password,
         port=pg_port
     )
-    cursor = connection.cursor()
+    cursor = conn.cursor()
     mimc_code_postgres_funcs = f'{MIMIC_POSTGRES_CONCEPTS_DIR}/postgres-functions.sql'
     with open(mimc_code_postgres_funcs, "r") as file:
         sql_script = file.read()
@@ -100,7 +100,7 @@ def run(mimic_zip_path, mimic_code_path, mimic_extract_path, pg_host, pg_user, p
         password=pg_password,
         port=pg_port
     )
-    cursor = connection.cursor()
+    cursor = conn.cursor()
     mimc_extract_postgres_concepts = f'{MIMIC_EXTRACT_UTILS_DIR}/niv-durations.sql'
     with open(mimc_extract_postgres_concepts, "r") as file:
         sql_script = file.read()
