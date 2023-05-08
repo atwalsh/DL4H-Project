@@ -6,11 +6,13 @@
 
 This project contains source code for fully replicating [MIMIC-Extract](https://arxiv.org/abs/1907.08322).
 
-Project structure:
+**Project structure**
 
 ```bash
 .
-│   # Customized version of MIMIC-Extract code
+│   # Copy of MIT-LCP/mimic-code
+├── mimic-code
+│   # Customized version of MIMIC-Extract
 ├── MIMIC_Extract
 │  ├── ...
 │   # Script to easily set up and run MIMIC-Extract database resources
@@ -26,10 +28,12 @@ Project structure:
 └── README.md
 ```
 
+Note: `.h5` and `.npy` output files are tracked with Git LFS.
+
 ## Resources
-- [MIT-LCP/mimic-code](https://github.com/MIT-LCP/mimic-code) -> MIMIC Code Repository: Code shared by the research community for the MIMIC family of databases
-- [MLforHealth/MIMIC_Extract](https://github.com/MLforHealth/MIMIC_Extract) -> A Data Extraction, Preprocessing, and Representation Pipeline for MIMIC-III
-- [MIMIC-III Clinical Database](https://physionet.org/content/mimiciii/1.4/) via PhysioNet
+- [MIT-LCP/mimic-code](https://github.com/MIT-LCP/mimic-code) -> MIMIC Code Repository: Code shared by the research community for the MIMIC family of databases.
+- [atwalsh/MIMIC_Extract](https://github.com/atwalsh/MIMIC_Extract) -> A Data Extraction, Preprocessing, and Representation Pipeline for MIMIC-III. Customized for this application.
+- [MIMIC-III Clinical Database](https://physionet.org/content/mimiciii/1.4/) via PhysioNet.
 
 
 ## Instructions
@@ -38,6 +42,13 @@ This repository provides two methods of configuring your local environment for r
 
 1. Using the `mimic_ez.py` script to automatically run all necessary steps to build the MIMIC-III database and configure MIMIC_Extract
 2. Following the below instructions to build MIMIC-III and configure MIMIC_Extract manually
+
+Both require that you have downloaded the [MIMIC-III Clinical Database](https://physionet.org/content/mimiciii/1.4/), which requires the following steps:
+
+1. Register for an account on the PhysioNet website, which hosts the MIMIC-III database.
+2. Become a credentialed user on PhysioNet.
+3. Complete the CITI Program training in human subjects research and HIPAA privacy rules.
+4. Sign the data use agreement (DUA) form for the dataset.
 
 ## Dependencies
 
@@ -72,11 +83,10 @@ The below steps outline how to successfully build MIMIC-III and run the MIMIC-Ex
 
 ### Option 1: Using `mimic_ez.py`
 
-1. Clone [mimic-code](https://github.com/MIT-LCP/mimic-code)
-2. Clone  [MIMIC_Extract](https://github.com/MLforHealth/MIMIC_Extract)
+1. Clone this repository with submodules initialized
 3. Install dependencies and create conda environment:
 	1. Run `export MACOSX_DEPLOYMENT_TARGET=10.9`
-	2. Run `conda env create --force -f mimic_extract_env_py36.yml`
+	2. Run `conda env create --force -f ./MIMIC_Extract/mimic_extract_env_py36.yml`
 3. Run the `mimic_ez.py` script:
 
 ```console
@@ -122,7 +132,7 @@ python mimic_ez.py \
 
 #### 2. Run MIMIC-Extract
 
-1. Clone  [MIMIC_Extract](https://github.com/MLforHealth/MIMIC_Extract)
+1. Clone  [MIMIC-Extract](https://github.com/atwalsh/MIMIC_Extract)
 2. Create the Conda environment (See [updated Conda .yml in atwalsh/MIMIC-Extract](https://github.com/atwalsh/MIMIC_Extract/blob/project-draft/mimic_extract_env_py36.yml))
 	1. Open the cloned `MIMIC_Extract/utils/` folder in Terminal
 	2. Run `export MACOSX_DEPLOYMENT_TARGET=10.9`
@@ -139,5 +149,9 @@ python mimic_ez.py \
 
 
 ## References
+
+- Original MIMIC-Extract repository: https://github.com/MLforHealth/MIMIC_Extract
+- Original mimic-code repository: https://github.com/MIT-LCP/mimic-code
+
 
 Shirly Wang, Matthew B. A. McDermott, Geeticka Chauhan, Michael C. * Hughes, Tristan Naumann, and Marzyeh Ghassemi. MIMIC-Extract: A Data Extraction, Preprocessing, and Representation Pipeline for MIMIC-III. arXiv:1907.08322.
