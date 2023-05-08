@@ -6,6 +6,12 @@
 
 This project contains source code for fully replicating [MIMIC-Extract](https://arxiv.org/abs/1907.08322).
 
+**_Warning_:** This repository contains over 1.5 GB of MIMIC-Extract output files tracked with Git LFS. If you want to save time cloning this repository, and don't care about the output files, clone with the following command:
+
+```console
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/atwalsh/DL4H-Project.git
+```
+
 **Project structure**
 
 ```bash
@@ -19,6 +25,8 @@ This project contains source code for fully replicating [MIMIC-Extract](https://
 ├── mimic_ez.py
 │   # Sample outputs from MIMIC-Extract
 ├── output
+│      # Default settings; over 20 GB when unzipped
+│  ├── full.zip 
 │      # Default settings with population size of 25
 │  ├── population-25 
 │      # Default settings with population size of 1000
@@ -64,6 +72,8 @@ Before following either method to configure MIMIC_Extract, you must have the fol
 - While users may download individual files of the mimic-code repository, the MIMIC-Extract codebase expects to take full-database. Therefore, users who wish to partially download the dataset should take caution for possible sources of error. 
 - Downloading the full ZIP file from PhysioNet may take an hour or more.
 - The MIMIC-Extract function may take between 1.5-2 hours to run on the full population in this test case. Running with a smaller population (e.g., 25) only takes a few minutes.
+
+We were able to run MIMIC-Extract against the full MIMIC-III database with a 2021 MacBook Pro with an Apple M1 Max and 64 GB of RAM.
 
 ## Accessing the MIMIC-III database
 
