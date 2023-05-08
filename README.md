@@ -2,6 +2,30 @@
 
 ---
 
+## About
+
+This project contains source code for fully replicating [MIMIC-Extract](https://arxiv.org/abs/1907.08322).
+
+Project structure:
+
+```bash
+.
+│   # Customized version of MIMIC-Extract code
+├── MIMIC_Extract
+│  ├── ...
+│   # Script to easily set up and run MIMIC-Extract database resources
+├── mimic_ez.py
+│   # Sample outputs from MIMIC-Extract
+├── output
+│      # Default settings with population size of 25
+│  ├── population-25 
+│      # Default settings with population size of 1000
+│  ├── population-1000 
+│      # Ablated data, skipping unit conversion with population size of 1000
+│  └── population-1000-no-unit-conversion 
+└── README.md
+```
+
 ## Resources
 - [MIT-LCP/mimic-code](https://github.com/MIT-LCP/mimic-code) -> MIMIC Code Repository: Code shared by the research community for the MIMIC family of databases
 - [MLforHealth/MIMIC_Extract](https://github.com/MLforHealth/MIMIC_Extract) -> A Data Extraction, Preprocessing, and Representation Pipeline for MIMIC-III
