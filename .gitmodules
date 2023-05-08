@@ -1,0 +1,3 @@
+[submodule "MIMIC_Extract"]
+	path = MIMIC_Extract
+	url = https://atwalsh@github.com/atwalsh/MIMIC_Extract
