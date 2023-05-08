@@ -64,7 +64,7 @@ python mimic_ez.py \
 	--pg_user postgres \
 	--pg_password postgres \
 	--pg_port 5432 \
-	 --pg_db mimicez \
+	--pg_db mimicez \
 ```
 
 4. Change directory to `$CLONED_MIMIC_EXTRACT_DIR` and run `python mimic_direct_extract.py`
