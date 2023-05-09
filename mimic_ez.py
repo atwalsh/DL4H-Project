@@ -5,11 +5,12 @@ import os
 from subprocess import run as subrun
 import sys
 
+current_path = str(Path(__file__).parent.resolve())
 
 @click.command()
 @click.option('--mimic_zip_path', prompt='Full path of MIMIC-III database ZIP file', required=True)
-@click.option('--mimic_code_path', prompt='Full path of mimic-code repository', required=True)
-@click.option('--mimic_extract_path', prompt='Full path of MIMIC-Extract repository', required=True)
+@click.option('--mimic_code_path', prompt='Full path of mimic-code repository', required=True, default=current_path + '/mimic-code')
+@click.option('--mimic_extract_path', prompt='Full path of MIMIC-Extract repository', required=True, default=current_path + '/MIMIC_Extract')
 @click.option('--pg_host', prompt='PostgreSQL database host', required=True, default='localhost')
 @click.option('--pg_db', prompt='PostgreSQL database name', required=True, default='mimic')
 @click.option('--pg_user', prompt='PostgreSQL database user', required=True, default=os.getlogin())

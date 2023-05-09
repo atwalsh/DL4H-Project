@@ -1,3 +1,6 @@
 [submodule "MIMIC_Extract"]
 	path = MIMIC_Extract
 	url = https://atwalsh@github.com/atwalsh/MIMIC_Extract
+[submodule "mimic-code"]
+	path = mimic-code
+	url = https://github.com/MIT-LCP/mimic-code
