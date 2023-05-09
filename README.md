@@ -105,6 +105,8 @@ The below steps outline how to successfully build MIMIC-III and run the MIMIC-Ex
 3. Install dependencies and create conda environment:
 	1. Run `export MACOSX_DEPLOYMENT_TARGET=10.9`
 	2. Run `conda env create --force -f ./MIMIC_Extract/mimic_extract_env_py36.yml`
+		i. This creates a Conda environment using our modified dependency file
+	3. Activate the environment: `conda activate mimic_extract_env_py36`
 3. Run the `mimic_ez.py` script:
 
 ```console
@@ -120,6 +122,8 @@ python mimic_ez.py \
 ```
 
 4. Change directory to `$CLONED_MIMIC_EXTRACT_DIR` and run `python mimic_direct_extract.py`
+	1. Set the `--out-path` parameter to the desired extraction output location
+	2. Set the `--pop_size` parameter to set a population size
 
 ### Option 2: Building manually
 
@@ -130,7 +134,7 @@ python mimic_ez.py \
 3. Follow the steps in mimic-code to [create MIMIC-III in a local Postgres database](https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iii/buildmimic/postgres/README.md)
 	1. Unzip the MIMIC-III database
 	2. Open `mimic-code/mimic-iii/buildmimic/postgres/` in Terminal
-	3. Run `make create-user mimic-gz datadir="/path/to/mimic/zip/"`
+	3. Run `make create-user mimic-gz datadir="/path/to/mimic/unzipped/"`
 		1. NOTE: This will likely take many (6+) hours to complete
 		2. By default, the Makefile uses the following parameters:
 			-   Database name: `mimic`
@@ -155,7 +159,7 @@ python mimic_ez.py \
 	1. Open the cloned `MIMIC_Extract/utils/` folder in Terminal
 	2. Run `export MACOSX_DEPLOYMENT_TARGET=10.9`
 	3. Run `conda env create --force -f ../mimic_extract_env_py36.yml`
-	4. Activate the environment with `conda activate mimic_data_extraction`
+	4. Activate the environment with `conda activate mimic_extract_env_py36`
 	5. Install the english language model for spacy: `python -m spacy download en_core_web_sm`
 3. Build additional MIMIC-Extract concepts in PostgreSQL
 	1. Run `bash postgres_make_extended_concepts.sh`
