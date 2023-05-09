@@ -96,7 +96,7 @@ Gain access to the MIMIC-III Clinical Database on PhysioNet:
 
 ---
 
-## Build for MIMIC-Extract
+## Running MIMIC-Extract
 
 The below steps outline how to successfully build MIMIC-III and run the MIMIC-Extract program. This was tested on a 2021 MacBook Pro with an Apple M1 Max and 64 GB of RAM, using PostgreSQL 13.5.
 
