@@ -32,7 +32,9 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/atwalsh/DL4H-Project.git
 │  ├── population-1000/ 
 │      # Ablated data, skipping unit conversion with population size of 1000
 │  └── population-1000-no-unit-conversion/
-└── README.md
+├── README.md
+│   # Notebook comparing default exported data with ablated dataset
+└── sample_notebook.ipynb
 ```
 
 Note: `.h5` and `.npy` output files are tracked with Git LFS.
