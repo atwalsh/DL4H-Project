@@ -17,22 +17,21 @@ GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/atwalsh/DL4H-Project.git
 ```bash
 .
 │   # Copy of MIT-LCP/mimic-code
-├── mimic-code
+├── mimic-code/
 │   # Customized version of MIMIC-Extract
-├── MIMIC_Extract
-│  ├── ...
+├── MIMIC_Extract/
 │   # Script to easily set up and run MIMIC-Extract database resources
 ├── mimic_ez.py
 │   # Sample outputs from MIMIC-Extract
-├── output
+├── output/
 │      # Default settings; over 20 GB when unzipped
 │  ├── full.zip 
 │      # Default settings with population size of 25
-│  ├── population-25 
+│  ├── population-25/
 │      # Default settings with population size of 1000
-│  ├── population-1000 
+│  ├── population-1000/ 
 │      # Ablated data, skipping unit conversion with population size of 1000
-│  └── population-1000-no-unit-conversion 
+│  └── population-1000-no-unit-conversion/
 └── README.md
 ```
 
